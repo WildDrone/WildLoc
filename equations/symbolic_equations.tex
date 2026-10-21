@@ -1,0 +1,38 @@
+\section{Localisation Equations}
+\begin{align*}
+LF\left([n_c\ e_c\ d_c\ \psi\ \theta\ f\ c_x\ c_y\ x^i_{vPOI}\ y^i_{vPOI}\ ]^T\right) &=\left[\begin{matrix}\frac{A n_{c} + d_{c} \left(B \sin{\left(\psi \right)} - C \sin{\left(\theta \right)} \cos{\left(\psi \right)} + f \cos{\left(\psi \right)} \cos{\left(\theta \right)}\right)}{A}\\\frac{A e_{c} - d_{c} \left(B \cos{\left(\psi \right)} + C \sin{\left(\psi \right)} \sin{\left(\theta \right)} - f \sin{\left(\psi \right)} \cos{\left(\theta \right)}\right)}{A}\end{matrix}\right] \\
+A = C \cos{\left(\theta \right)} + f \sin{\left(\theta \right)} \\
+B = c_{x} - x^i_{vPOI} \\
+C = c_{y} - y^i_{vPOI} \\
+\end{align*}
+\section{Localisation Error Contributions}
+\begin{align*}
+\text{Horizontal position error: }&\left[\begin{matrix}\Delta{n_c}\\\Delta{e_c}\end{matrix}\right] \\
+\text{Vertical error: }&\left[\begin{matrix}\frac{\Delta{d_c}}{\tan{\left(\theta \right)}}\\0\end{matrix}\right] = \left[\begin{matrix}\frac{\Delta{d_c} p}{d_{c}}\\0\end{matrix}\right] \\
+\text{Attitude pitch error: }&\left[\begin{matrix}- \frac{d_{c} \sin{\left(\Delta{\theta} \right)}}{\sin{\left(\theta \right)} \sin{\left(\Delta{\theta} + \theta \right)}}\\0\end{matrix}\right] \approx \left[\begin{matrix}- \frac{2 \Delta{\theta} d_{c}}{\Delta{\theta} \sin{\left(2 \theta \right)} - \cos{\left(2 \theta \right)} + 1}\\0\end{matrix}\right] = \left[\begin{matrix}- \frac{\Delta{\theta} \left(d_{c}^{2} + p^{2}\right)}{\Delta{\theta} p + d_{c}}\\0\end{matrix}\right] \\
+\text{Attitude yaw error: }&\left[\begin{matrix}\frac{d_{c} \left(\cos{\left(\Delta{\psi} \right)} - 1\right)}{\tan{\left(\theta \right)}}\\\frac{d_{c} \sin{\left(\Delta{\psi} \right)}}{\tan{\left(\theta \right)}}\end{matrix}\right] \approx \left[\begin{matrix}0\\\frac{\Delta{\psi} d_{c}}{\tan{\left(\theta \right)}}\end{matrix}\right] = \left[\begin{matrix}0\\\Delta{\psi} p\end{matrix}\right] \\
+\text{X image coordinate error: }&\left[\begin{matrix}0\\\frac{\Delta{x^i_{vPOI}} d_{c}}{f \sin{\left(\theta \right)}}\end{matrix}\right] = \left[\begin{matrix}0\\\frac{\Delta{x^i_{vPOI}} \sqrt{d_{c}^{2} + p^{2}}}{f}\end{matrix}\right] \\
+\text{Y image coordinate error: }&\left[\begin{matrix}\frac{2 \Delta{y^i_{vPOI}} d_{c}}{- \Delta{y^i_{vPOI}} \sin{\left(2 \theta \right)} - f \cos{\left(2 \theta \right)} + f}\\0\end{matrix}\right] = \left[\begin{matrix}- \frac{\Delta{y^i_{vPOI}} \left(d_{c}^{2} + p^{2}\right)}{\Delta{y^i_{vPOI}} p - d_{c} f}\\0\end{matrix}\right] \\
+\end{align*}
+\section{Size Error Contributions}
+\begin{align*}
+\text{Horizontal size error (longitudinal): }&0 \\
+\text{Horizontal size error (lateral): }&0 \\
+\text{Vertical size error (longitudinal): }&- \frac{\Delta{d_c}}{d_{c}} \\
+\text{Vertical size error (lateral): }&- \frac{\Delta{d_c}}{p \tan{\left(\theta \right)}} = - \frac{\Delta{d_c}}{d_{c}} \\
+\text{Attitude pitch size error (longitudinal): }&\approx \frac{\Delta{\theta} \left(- \Delta{\theta} d_{c}^{2} + \Delta{\theta} p^{2} - \Delta{\theta} p s + 2 d_{c} p - d_{c} s\right)}{d_{c} \left(2 \Delta{\theta} p - \Delta{\theta} s + d_{c}\right)} \approx \frac{\Delta{\theta} \left(- \Delta{\theta} d_{c}^{2} + \Delta{\theta} p^{2} + 2 d_{c} p\right)}{d_{c} \left(2 \Delta{\theta} p + d_{c}\right)} \\
+\text{Attitude pitch size error (lateral): }&\frac{d_{c} \left(\frac{1}{\tan{\left(\theta \right)}} - \frac{\cos{\left(\theta \right)}}{\sin{\left(\Delta{\theta} + \theta \right)}}\right)}{p} \approx \frac{\Delta{\theta} d_{c} \left(\cos{\left(2 \theta \right)} + 1\right)}{p \left(\Delta{\theta} \sin{\left(2 \theta \right)} - \cos{\left(2 \theta \right)} + 1\right)} = \frac{\Delta{\theta} p}{\Delta{\theta} p + d_{c}} \\
+\text{Attitude yaw size error (longitudinal): }&0 \\
+\text{Attitude yaw size error (lateral): }&0 \\
+\text{X image coordinate size error (longitudinal): }&\frac{- f + \sqrt{\left(\Delta{x^i_{vPOI}}\right)^{2} \cos^{2}{\left(\theta \right)} + f^{2}}}{f} = -1 + \frac{\sqrt{\left(\Delta{x^i_{vPOI}}\right)^{2} p^{2} + d_{c}^{2} f^{2} + f^{2} p^{2}}}{f \sqrt{d_{c}^{2} + p^{2}}} \\
+\text{X image coordinate size error (lateral): }&0 \\
+\text{Y image coordinate size error (longitudinal): }&= \frac{d_{c}^{2} f^{2} \left(d_{c}^{2} + p^{2}\right)}{\left|{\left(\Delta{y^i_{vPOI}}\right)^{2} d_{c}^{2} p^{2} + \left(\Delta{y^i_{vPOI}}\right)^{2} p^{4} - \left(\Delta{y^i_{vPOI}}\right)^{2} p^{3} s - 2 \Delta{y^i_{vPOI}} d_{c}^{3} f p - 2 \Delta{y^i_{vPOI}} d_{c} f p^{3} + \Delta{y^i_{vPOI}} d_{c} f p^{2} s + d_{c}^{4} f^{2} + d_{c}^{2} f^{2} p^{2}}\right|} - 1 \\
+\text{Y image coordinate size error (lateral): }&\frac{\Delta{y^i_{vPOI}} d_{c} \left(\cos{\left(2 \theta \right)} + 1\right)}{p \left(\Delta{y^i_{vPOI}} \sin{\left(2 \theta \right)} + f \cos{\left(2 \theta \right)} - f\right)} = \frac{\Delta{y^i_{vPOI}} p}{\Delta{y^i_{vPOI}} p - d_{c} f} \\
+\text{Focal length size error (longitudinal): }&\frac{\Delta{f} \left(2 d_{c} - s \sin{\left(2 \theta \right)}\right)}{2 \Delta{f} d_{c} - \Delta{f} s \sin{\left(2 \theta \right)} + 2 d_{c} f} = \frac{\Delta{f} \left(d_{c}^{2} + p^{2} - p s\right)}{\Delta{f} d_{c}^{2} + \Delta{f} p^{2} - \Delta{f} p s + d_{c}^{2} f + f p^{2}} \approx \frac{\Delta{f}}{\Delta{f} + f} \\
+\text{Focal length size error (lateral): }&\frac{\Delta{f} d_{c}}{p \left(\Delta{f} + f\right) \tan{\left(\theta \right)}} = \frac{\Delta{f}}{\Delta{f} + f} \\
+\end{align*}
+\section{Equivalence Relations}
+\begin{align*}
+\text{Pitch and Y image equivalence: }&- \frac{\Delta{y^i_{vPOI}}}{f} \\
+\text{Yaw and X image equivalence: }&\frac{\Delta{x^i_{vPOI}} \sqrt{d_{c}^{2} + p^{2}}}{f p} \\
+\end{align*}
